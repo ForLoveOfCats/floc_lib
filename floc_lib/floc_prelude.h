@@ -1,6 +1,7 @@
 #ifndef FLOC_PRELUDE_H
 #define FLOC_PRELUDE_H
 
+
 #include <stdint.h>
 
 
@@ -25,7 +26,7 @@
 #define usize size_t
 
 
-#define scope(func) __attribute__ ((__cleanup__(func)))
+#define scope(func) __attribute__((__cleanup__(func)))
 
 
 #endif /*FLOC_PRELUDE_H*/

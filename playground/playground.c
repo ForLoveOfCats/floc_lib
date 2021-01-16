@@ -1,9 +1,9 @@
-#include "../floc_lib/floc_lib.h"
-
 #include <stdio.h>
 
+#include "../floc_lib/floc_lib.h"
 
-define_list_type(int)
+
+define_list_type(int);
 
 
 int main() {
@@ -16,7 +16,8 @@ int main() {
 	push(list, 42);
 	push(list, 57);
 	push(list, 98);
-	printf("len %li, capacity: %li, [3]: %i\n", list.len, list.capacity, list.head[3]);
+	printf("len %li, capacity: %li, [3]: %i\n", list.len, list.capacity,
+	       list.head[3]);
 
 	return 0;
 }
