@@ -1,6 +1,6 @@
 ---
 Language:        Cpp
-UseTab: ForIndentation
+UseTab: Always
 AccessModifierOffset: -1
 AlignAfterOpenBracket: Align
 AlignConsecutiveMacros: false
@@ -8,7 +8,7 @@ AlignConsecutiveAssignments: false
 AlignConsecutiveBitFields: false
 AlignConsecutiveDeclarations: false
 AlignConsecutiveMacros: false
-AlignEscapedNewlines: Right
+AlignEscapedNewlines: DontAlign
 AlignOperands: Align
 AlignTrailingComments: false
 AllowAllArgumentsOnNextLine: false
