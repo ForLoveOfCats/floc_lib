@@ -21,7 +21,7 @@
 \
 	ListName ListName##_with_capacity(usize capacity) { \
 		ListName instance; \
-		instance.head = malloc(sizeof(T) * capacity); \
+		instance.head = floc_malloc(sizeof(T) * capacity); \
 		instance.len = 0; \
 		instance.capacity = capacity; \
 		return instance; \
@@ -30,13 +30,13 @@
 \
 	void ListName##_expand_capacity_by(ListName *self, usize increase) { \
 		usize new_capacity = self->capacity + increase; \
-		self->head = realloc(self->head, sizeof(T) * new_capacity); \
+		self->head = floc_realloc(self->head, sizeof(T) * new_capacity); \
 		self->capacity = new_capacity; \
 	} \
 \
 \
 	void ListName##_destroy(ListName *self) { \
-		free(self->head); \
+		floc_free(self->head); \
 		printf("Freed list\n"); \
 	}
 
@@ -49,11 +49,12 @@
 	{ \
 		if (self.capacity == self.len) { \
 			if (self.capacity == 0) { \
-				self.head = malloc(sizeof(value) * 2); \
+				self.head = floc_malloc(sizeof(value) * 2); \
 				self.capacity = 2; \
 			} else { \
 				usize new_capacity = self.capacity * 2; \
-				self.head = realloc(self.head, sizeof(value) * new_capacity); \
+				self.head = \
+					floc_realloc(self.head, sizeof(value) * new_capacity); \
 				self.capacity = new_capacity; \
 			} \
 		} \
