@@ -1,10 +1,11 @@
 #!/usr/bin/sh
 
-clang \
+clang++ \
 	-g -O0 \
 	-Wall -Wextra -Wpedantic -Wno-extra-semi \
+	-Wno-language-extension-token -Wno-gnu-zero-variadic-macro-arguments -Wno-gnu-statement-expression \
 	-fsanitize=undefined -fsanitize=address \
-	-x c ./playground/playground.c \
+	-x c++ ./playground/playground.cpp \
 	-o playground.x64
 
 if [ $? -eq 0 ]; then

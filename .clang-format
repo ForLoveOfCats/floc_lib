@@ -1,7 +1,7 @@
 ---
 Language:        Cpp
 UseTab: Always
-AccessModifierOffset: -1
+AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignConsecutiveMacros: false
 AlignConsecutiveAssignments: false
@@ -146,7 +146,7 @@ RawStringFormats:
       - ParsePartialTestProto
     CanonicalDelimiter: ''
     BasedOnStyle:    google
-ReflowComments:  true
+ReflowComments:  false
 SortIncludes:    true
 SortUsingDeclarations: true
 SpaceAfterCStyleCast: false
@@ -160,7 +160,7 @@ SpaceBeforeParens: ControlStatements
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceInEmptyBlock: false
 SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 2
+SpacesBeforeTrailingComments: 1
 SpacesInAngles:  false
 SpacesInConditionalStatement: false
 SpacesInContainerLiterals: true
