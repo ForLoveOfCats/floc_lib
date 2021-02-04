@@ -1,39 +1,27 @@
 #include "../floc_lib/floc_lib.hpp"
 
 
-define_list_type(int);
+define_list_type(String);
+define_map_type(String, String_destroy, String, String_destroy);
 
 
 int main() {
-	String string scope(String_destroy) = String_from_lit("Hello");
-	println("String '", &string, "' has len: ", string.len);
+	Map_String_String map scope(Map_String_String_destroy) = Map_String_String_new();
 
-	println("Pushing single character ' '");
-	push(string, ' ');
-	println("String '", &string, "' has len: ", string.len);
+	String my_key = String_from_lit("A");
+	String my_value = String_from_lit("first");
+	insert(map, my_key, my_value);
 
-	println("Pushing literal 'world!'");
-	String_push_lit(&string, "world!");
-	println("String '", &string, "' has len: ", string.len);
+	my_key = String_from_lit("B");
+	my_value = String_from_lit("second");
+	insert(map, my_key, my_value);
 
-	emptyln();
+	my_key = String_from_lit("C");
+	my_value = String_from_lit("third");
+	insert(map, my_key, my_value);
 
-	usize customer_id = 42;
-	String formatted scope(String_destroy) =
-		format("Hello there customer ", customer_id, "! How are you?");
-	println(&formatted);
+	String *found = lookup(map, "B");
+	println("found '", found, "'");
 
-	emptyln();
-
-	List_int list scope(List_int_destroy) = List_int_new();
-	push(list, 420);
-	push(list, 69);
-	push(list, 42);
-	push(list, 57);
-	push(list, 98);
-	println("List has len ", list.len, ", capacity is ", list.capacity,
-			", value at index 3 is ", list.head[3]);
-
-	printf("\nReturning\n");
 	return 0;
 }

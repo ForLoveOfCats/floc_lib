@@ -2,6 +2,11 @@
 #define FLOC_LIST_H
 
 
+#define define_list_type(T) _define_list_type_internal(T, List_##T)
+
+#define prefixed_define_list_type(prefix, T) \
+	_define_list_type_internal(T, prefix##List_##T)
+
 #define _define_list_type_internal(T, ListName) \
 	typedef struct { \
 		T *head; \
@@ -21,7 +26,7 @@
 \
 	ListName ListName##_with_capacity(usize capacity) { \
 		ListName instance; \
-		if (capacity > 0) { \
+		if(capacity > 0) { \
 			instance.head = (T *)malloc(sizeof(T) * capacity); \
 		} else { \
 			instance.head = NULL; \
@@ -41,18 +46,13 @@
 \
 	void ListName##_destroy(ListName *self) { \
 		free(self->head); \
-		printf("Freed list\n"); \
 	}
-
-#define define_list_type(T) _define_list_type_internal(T, List_##T)
-#define prefixed_define_list_type(prefix, T) \
-	_define_list_type_internal(T, prefix##List_##T)
 
 
 #define push(self, value) \
 	{ \
-		if (self.capacity == self.len) { \
-			if (self.capacity == 0) { \
+		if(self.capacity == self.len) { \
+			if(self.capacity == 0) { \
 				self.head = (typeof(self.head))malloc(sizeof(value) * 2); \
 				self.capacity = 2; \
 			} else { \
@@ -65,6 +65,13 @@
 \
 		self.head[self.len] = value; \
 		self.len += 1; \
+	}
+
+
+#define foreach(var_name, list, loop_body) \
+	for(usize __foreach_loop_index = 0; __foreach_loop_index < list.len; __foreach_loop_index += 1) { \
+		auto var_name = &list.head[__foreach_loop_index]; \
+		{ loop_body } \
 	}
 
 

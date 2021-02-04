@@ -2,6 +2,7 @@
 #define FLOC_LIB_H
 
 #include "floc_list.hpp"
+#include "floc_map.hpp"
 #include "floc_prelude.hpp"
 #include "floc_print.hpp"
 #include "floc_string.hpp"
