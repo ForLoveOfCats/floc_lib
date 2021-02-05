@@ -7,7 +7,7 @@
 #include "floc_cmp.hpp"
 #include "floc_list.hpp"
 #include "floc_map.hpp"
-#include "floc_prelude.hpp"
+#include "floc_lib.hpp"
 #include "floc_print.hpp"
 
 
@@ -63,13 +63,13 @@ define_format_function(String *, {
 });
 
 
-define_equal_function(String *, {
-	if(left->len != right->len) {
+define_equal_function(String, {
+	if(left.len != right.len) {
 		return false;
 	}
 
-	for(usize index = 0; index < left->len; index += 1) {
-		if(left->head[index] != right->head[index]) {
+	for(usize index = 0; index < left.len; index += 1) {
+		if(left.head[index] != right.head[index]) {
 			return false;
 		}
 	}
@@ -78,10 +78,10 @@ define_equal_function(String *, {
 });
 
 
-define_equal_function_diff(String *, Str, {
+define_equal_function_diff(String, Str, {
 	usize index = 0;
-	while(index < a->len) {
-		char a_char = a->head[index];
+	while(index < a.len) {
+		char a_char = a.head[index];
 		char b_char = b[index];
 
 		if(a_char != b_char) {
@@ -108,10 +108,10 @@ define_hash_function(Str, {
 });
 
 
-define_hash_function(String *, {
+define_hash_function(String, {
 	usize hash = 0;
-	for(usize index = 0; index < self->len; index += 1) {
-		hash = (hash * 31) + self->head[index];
+	for(usize index = 0; index < self.len; index += 1) {
+		hash = (hash * 31) + self.head[index];
 	}
 	return hash;
 });

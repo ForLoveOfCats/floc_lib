@@ -1,15 +1,16 @@
 #ifndef FLOC_MAP_H
 #define FLOC_MAP_H
 
+#include "floc_lib.hpp"
+
 #include "floc_list.hpp"
-#include "floc_prelude.hpp"
 
 
 #define DEFAULT_MAP_CAPACITY 32
 
 
 #define define_hash_function(K, function_block) \
-	usize hash(K self) function_block
+	usize hash(const K& self) function_block
 
 
 #define define_map_type(K, K_destroy, V, V_destroy) \
@@ -55,7 +56,7 @@
 \
 \
 	MapName##_element _map_element_new(MapName *overload_filter, K key, V value) { \
-		*overload_filter; \
+		DoNot_destroy(overload_filter); /*Mark as used*/ \
 		MapName##_element element; \
 		element.key = key; \
 		element.value = value; \
@@ -64,13 +65,13 @@
 \
 \
 	void _map_destroy_key(MapName *overload_filter, K *key) { \
-		*overload_filter; \
+		DoNot_destroy(overload_filter); /*Mark as used*/ \
 		K_destroy(key); \
 	} \
 \
 \
-	void _map_destroy_value(MapName *overload_filter, K *value) { \
-		*overload_filter; \
+	void _map_destroy_value(MapName *overload_filter, V *value) { \
+		DoNot_destroy(overload_filter); /*Mark as used*/ \
 		V_destroy(value); \
 	} \
 \
@@ -118,14 +119,15 @@
 			_map_grow(&self); \
 		} \
 \
-		usize __index = hash(&__key) % self.buckets.len; \
+		usize __index = hash(__key) % self.buckets.len; \
 		auto __bucket = &self.buckets.head[__index]; \
 \
 		bool __overwrote = false; \
 		foreach(__element, __bucket->elements, { \
-			if(equal(&__element->key, &__key)) { \
+			if(equal(__element->key, __key)) { \
 				_map_destroy_value(&self, &__element->value); \
-				_map_destroy_key(&self, &__key); \
+				auto __lvalue__key = __key; /*I hate this*/ \
+				_map_destroy_key(&self, &__lvalue__key); \
 				__element->value = __value; \
 				__overwrote = true; \
 				println("Overwrote existing element"); \
@@ -149,7 +151,7 @@
 \
 		typeof(__bucket->elements.head->value) *__found_value = NULL; \
 		foreach(__element, __bucket->elements, { \
-			if(equal(&__element->key, __key)) { \
+			if(equal(__element->key, __key)) { \
 				__found_value = &__element->value; \
 				break; \
 			} \
