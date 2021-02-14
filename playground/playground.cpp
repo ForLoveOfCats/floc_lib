@@ -13,6 +13,15 @@ define_map_type(i64, DoNot_destroy, f64, DoNot_destroy)
 
 
 int main() {
+	Str name = "ForLoveOfCats";
+	println("Hello there ", name, " how are you? Btw here is a bool: ", false);
+	String formatted scope(String_destroy) = format("Hello there ", name, " how are you? Btw here is a bool: ", false);
+	println(&formatted);
+
+
+	emptyln();
+
+
 	List_u32 list scope(List_u32_destroy) = List_u32_new();
 	push(list, 0);
 	push(list, 1);
@@ -55,6 +64,9 @@ int main() {
 	insert(second_map, (u32)0, (f64)7.65);
 	// remove_key(second_map, (u32)180);
 	println(*lookup(second_map, (u32)180));
+
+
+	emptyln();
 
 
 	Map_i64_f64 third_map scope(Map_i64_f64_destroy) = Map_i64_f64_new();
