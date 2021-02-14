@@ -77,7 +77,6 @@
 \
 \
 	void _map_grow(MapName *self) { \
-		println("growing from bucket len ", self->buckets.len, " to bucket len ", self->buckets.len * 2); \
 		MapName new_self; \
 		new_self.buckets = List_##MapName##_bucket_with_capacity(self->buckets.len * 2); \
 		new_self.element_count = self->element_count; \
@@ -130,7 +129,6 @@
 				_map_destroy_key(&self, &__lvalue__key); \
 				__element->value = __value; \
 				__overwrote = true; \
-				println("Overwrote existing element"); \
 				break; \
 			} \
 		}) \
@@ -139,7 +137,6 @@
 			auto __element = _map_element_new(&self, __key, __value); \
 			push(__bucket->elements, __element); \
 			self.element_count += 1; \
-			println("Pushed new element"); \
 		} \
 	}
 
