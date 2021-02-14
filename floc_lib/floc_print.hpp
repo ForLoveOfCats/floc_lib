@@ -48,15 +48,15 @@ define_format_function(f32, { fprintf(stream, "%f", self); })
 
 
 #define format(...) \
-	({ \
-		Str current_ptr = NULL; \
+	__extension__ ({ \
+		MutStr current_ptr = NULL; \
 		usize current_len = 0; \
 		FILE *file = open_memstream(&current_ptr, &current_len); \
 		print_to_file(file, __VA_ARGS__); \
 		fclose(file); \
 		String string = String_with_capacity(0); \
 		string.head = (u8 *)current_ptr; \
-		string.len = 42; \
+		string.len = current_len; \
 		string.capacity = current_len + 1; \
 		string; \
 	})
