@@ -16,31 +16,31 @@
 	void display_format(T self, FILE *stream) function_block
 
 
-define_format_function(const char, { fprintf(stream, "%c", self); });
+define_format_function(const char, { fprintf(stream, "%c", self); })
 
-define_format_function(const char *, { fprintf(stream, "%s", self); });
+define_format_function(const char *, { fprintf(stream, "%s", self); })
 
-define_format_function(bool, { fprintf(stream, "%s", self ? "true" : "false"); });
+define_format_function(bool, { fprintf(stream, "%s", self ? "true" : "false"); })
 
-define_format_function(usize, { fprintf(stream, "%lu", self); });
+define_format_function(usize, { fprintf(stream, "%lu", self); })
 
-define_format_function(u32, { fprintf(stream, "%u", self); });
+define_format_function(u32, { fprintf(stream, "%u", self); })
 
-define_format_function(u16, { fprintf(stream, "%u", self); });
+define_format_function(u16, { fprintf(stream, "%u", self); })
 
-define_format_function(u8, { fprintf(stream, "%u", self); });
+define_format_function(u8, { fprintf(stream, "%u", self); })
 
-define_format_function(i64, { fprintf(stream, "%li", self); });
+define_format_function(i64, { fprintf(stream, "%li", self); })
 
-define_format_function(i32, { fprintf(stream, "%i", self); });
+define_format_function(i32, { fprintf(stream, "%i", self); })
 
-define_format_function(i16, { fprintf(stream, "%i", self); });
+define_format_function(i16, { fprintf(stream, "%i", self); })
 
-define_format_function(i8, { fprintf(stream, "%i", self); });
+define_format_function(i8, { fprintf(stream, "%i", self); })
 
-define_format_function(f64, { fprintf(stream, "%f", self); });
+define_format_function(f64, { fprintf(stream, "%f", self); })
 
-define_format_function(f32, { fprintf(stream, "%f", self); });
+define_format_function(f32, { fprintf(stream, "%f", self); })
 
 
 //NOTE: Avoid missing definition of the above stuff

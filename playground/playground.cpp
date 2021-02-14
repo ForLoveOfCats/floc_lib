@@ -1,15 +1,15 @@
 #include "../floc_lib/floc_lib.hpp"
 
 
-define_list_type(String, String_destroy);
-define_map_type(String, String_destroy, String, String_destroy);
+define_list_type(String, String_destroy)
+define_map_type(String, String_destroy, String, String_destroy)
 
 
-define_list_type(u32, DoNot_destroy);
-define_map_type(u32, DoNot_destroy, f64, DoNot_destroy);
+define_list_type(u32, DoNot_destroy)
+define_map_type(u32, DoNot_destroy, f64, DoNot_destroy)
 
 
-define_map_type(i64, DoNot_destroy, f64, DoNot_destroy);
+define_map_type(i64, DoNot_destroy, f64, DoNot_destroy)
 
 
 int main() {

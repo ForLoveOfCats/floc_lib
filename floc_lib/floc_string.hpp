@@ -15,7 +15,7 @@ typedef char * MutStr;
 typedef const char * Str;
 
 
-prefixed_define_list_type(for_string_, u8, DoNot_destroy);
+prefixed_define_list_type(for_string_, u8, DoNot_destroy)
 
 typedef for_string_List_u8 String;
 
@@ -60,7 +60,7 @@ void String_destroy(String *self) {
 define_format_function(String *, {
 	//I hate this cast
 	fprintf(stream, "%.*s", (int)self->len, self->head);
-});
+})
 
 
 define_equal_function(String, {
@@ -75,7 +75,7 @@ define_equal_function(String, {
 	}
 
 	return true;
-});
+})
 
 
 define_equal_function_diff(String, Str, {
@@ -96,7 +96,7 @@ define_equal_function_diff(String, Str, {
 	}
 
 	return true;
-});
+})
 
 
 define_hash_function(Str, {
@@ -105,7 +105,7 @@ define_hash_function(Str, {
 		hash = (hash * 31) + self[index];
 	}
 	return hash;
-});
+})
 
 
 define_hash_function(String, {
@@ -114,7 +114,7 @@ define_hash_function(String, {
 		hash = (hash * 31) + self.head[index];
 	}
 	return hash;
-});
+})
 
 
 #endif /*FLOC_STRING_H*/

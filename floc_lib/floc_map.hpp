@@ -23,7 +23,7 @@
 	} MapName##_element; \
 \
 \
-	define_list_type(MapName##_element, DoNot_destroy); \
+	define_list_type(MapName##_element, DoNot_destroy) \
 \
 \
 	typedef struct { \
@@ -31,7 +31,7 @@
 	} MapName##_bucket; \
 \
 \
-	define_list_type(MapName##_bucket, DoNot_destroy); \
+	define_list_type(MapName##_bucket, DoNot_destroy) \
 \
 \
 	typedef struct { \
@@ -161,7 +161,7 @@
 
 
 #define lookup(self, __key) \
-	({ \
+	__extension__ ({ \
 		usize __index = hash(__key) % self.buckets.len; \
 		auto __bucket = &self.buckets.head[__index]; \
 \
