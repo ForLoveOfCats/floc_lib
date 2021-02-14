@@ -53,6 +53,7 @@ int main() {
 	insert(second_map, (u32)420, (f64)8);
 	insert(second_map, (u32)180, (f64)19);
 	insert(second_map, (u32)0, (f64)7.65);
+	// remove_key(second_map, (u32)180);
 	println(*lookup(second_map, (u32)180));
 
 

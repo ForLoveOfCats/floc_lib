@@ -144,6 +144,22 @@
 	}
 
 
+#define remove_key(self, __key) \
+	{ \
+		usize __index = hash(__key) % self.buckets.len; \
+		auto __bucket = &self.buckets.head[__index]; \
+\
+		__index = 0; \
+		foreach(__element, __bucket->elements, { \
+			if(equal(__element->key, __key)) { \
+				remove_index(__bucket->elements, __index); \
+				break; \
+			} \
+			__index += 1; \
+		}) \
+	}
+
+
 #define lookup(self, __key) \
 	({ \
 		usize __index = hash(__key) % self.buckets.len; \
@@ -156,6 +172,10 @@
 				break; \
 			} \
 		}) \
+\
+		if(__found_value == NULL) { \
+			panic("Failed to find value for key '", __key, "'"); \
+		} \
 \
 		__found_value; \
 	})
