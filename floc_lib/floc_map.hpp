@@ -23,7 +23,7 @@
 	} MapName##_element; \
 \
 \
-	define_list_type(MapName##_element); \
+	define_list_type(MapName##_element, DoNot_destroy); \
 \
 \
 	typedef struct { \
@@ -31,7 +31,7 @@
 	} MapName##_bucket; \
 \
 \
-	define_list_type(MapName##_bucket); \
+	define_list_type(MapName##_bucket, DoNot_destroy); \
 \
 \
 	typedef struct { \

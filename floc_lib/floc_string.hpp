@@ -15,7 +15,7 @@ typedef char * MutStr;
 typedef const char * Str;
 
 
-prefixed_define_list_type(for_string_, u8);
+prefixed_define_list_type(for_string_, u8, DoNot_destroy);
 
 typedef for_string_List_u8 String;
 

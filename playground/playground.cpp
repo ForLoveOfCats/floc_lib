@@ -1,11 +1,11 @@
 #include "../floc_lib/floc_lib.hpp"
 
 
-define_list_type(String);
+define_list_type(String, String_destroy);
 define_map_type(String, String_destroy, String, String_destroy);
 
 
-define_list_type(u32);
+define_list_type(u32, DoNot_destroy);
 define_map_type(u32, DoNot_destroy, f64, DoNot_destroy);
 
 
@@ -13,6 +13,19 @@ define_map_type(i64, DoNot_destroy, f64, DoNot_destroy);
 
 
 int main() {
+	List_u32 list scope(List_u32_destroy) = List_u32_new();
+	push(list, 0);
+	push(list, 1);
+	push(list, 2);
+	push(list, 3);
+	usize index = 2;
+	remove_index(list, index);
+	println("Value at index ", index, " is ", list.head[index]);
+
+
+	emptyln();
+
+
 	Map_String_String map scope(Map_String_String_destroy) = Map_String_String_new();
 
 	String my_key = String_from_lit("A");
@@ -30,7 +43,9 @@ int main() {
 	String *found = lookup(map, "B");
 	println("found '", found, "'");
 
+
 	emptyln();
+
 
 	Map_u32_f64 second_map scope(Map_u32_f64_destroy) = Map_u32_f64_new();
 	insert(second_map, (u32)5, (f64)4.2);

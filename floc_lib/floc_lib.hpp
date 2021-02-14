@@ -26,6 +26,13 @@ void DoNot_destroy(...) {}
 #define scope(func) __attribute__((__cleanup__(func)))
 
 
+#define panic(...) \
+	{ \
+		println("Panic!: " __VA_ARGS__); \
+		exit(EXIT_FAILURE); \
+	}
+
+
 #include "floc_list.hpp"
 #include "floc_map.hpp"
 #include "floc_lib.hpp"

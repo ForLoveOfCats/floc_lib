@@ -2,12 +2,15 @@
 #define FLOC_LIST_H
 
 
-#define define_list_type(T) _define_list_type_internal(T, List_##T)
+#include <string.h>
 
-#define prefixed_define_list_type(prefix, T) \
-	_define_list_type_internal(T, prefix##List_##T)
 
-#define _define_list_type_internal(T, ListName) \
+#define define_list_type(T, T_destroy) _define_list_type_internal(T, T_destroy, List_##T)
+
+#define prefixed_define_list_type(prefix, T, T_destroy) \
+	_define_list_type_internal(T, T_destroy, prefix##List_##T)
+
+#define _define_list_type_internal(T, T_destroy, ListName) \
 	typedef struct { \
 		T *head; \
 		usize len; \
@@ -45,7 +48,17 @@
 \
 \
 	void ListName##_destroy(ListName *self) { \
+		foreach(entry, (*self), { \
+			T_destroy(entry); \
+		}); \
+\
 		free(self->head); \
+	} \
+\
+\
+	void _list_destroy_entry(ListName *overload_filter, T *entry) { \
+		DoNot_destroy(overload_filter); /*Mark as used*/ \
+		T_destroy(entry); \
 	}
 
 
@@ -65,6 +78,18 @@
 \
 		self.head[self.len] = value; \
 		self.len += 1; \
+	}
+
+
+#define remove_index(self, index) \
+	{ \
+		if(index >= self.len) { \
+			panic("Index ", (usize)index, " is outsize len ", self.len); \
+		} \
+\
+		_list_destroy_entry(&self, &self.head[index]); \
+		memmove(&self.head[index], &self.head[index] + 1, sizeof(*self.head) * (self.len - 1 - index)); \
+		self.len -= 1; /*leave capacity unaffected*/ \
 	}
 
 
