@@ -5,16 +5,20 @@
 #include <stdlib.h>
 
 
-#define usize size_t
+typedef size_t usize;
 
-#define u64 uint64_t
-#define u32 uint32_t
-#define u16 uint16_t
-#define u8 uint8_t
+typedef uint64_t u64;
+typedef uint32_t u32;
+typedef uint16_t u16;
+typedef uint8_t u8;
 
+typedef int64_t i64;
+typedef int32_t i32;
+typedef int16_t i16;
+typedef int8_t i8;
 
-#define f64 double
-#define f32 float
+typedef double f64;
+typedef float f32;
 
 
 void DoNot_destroy(...) {}
@@ -57,6 +61,44 @@ define_equal_function(u8, {
 })
 define_hash_function(u8, {
 	return (usize)self;
+})
+
+
+define_equal_function(i64, {
+	return left == right;
+})
+define_hash_function(i64, {
+	return (usize)self;
+})
+
+define_equal_function(i32, {
+	return left == right;
+})
+define_hash_function(i32, {
+	return (usize)self;
+})
+
+define_equal_function(i16, {
+	return left == right;
+})
+define_hash_function(i16, {
+	return (usize)self;
+})
+
+define_equal_function(i8, {
+	return left == right;
+})
+define_hash_function(i8, {
+	return (usize)self;
+})
+
+
+define_equal_function(f64, {
+	return left == right;
+})
+
+define_equal_function(f32, {
+	return left == right;
 })
 
 
