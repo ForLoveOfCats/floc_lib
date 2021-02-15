@@ -12,6 +12,7 @@ some C++ features. Additionally several GNU C/C++ extensions are being used.
 
  * Function overloading
  * `auto` (makes some macro stuff nicer)
+ * References `T&` (because taking the address of a literal is disallowed)
 
 ### GNU C/C++ extensions used:
 
@@ -21,7 +22,7 @@ some C++ features. Additionally several GNU C/C++ extensions are being used.
  * `typeof` expression
 
 This is known to compile and run with Clang and GCC when compiling in C++
-mode. The example code in `playground/playground.cpp` sucessfully runs
+mode. The example code in `playground/playground.cpp` successfully runs
 with both both `ubsan` and `asan`.
 
 Please do not use this for any serious projects. The hashmap implementation
